@@ -1,0 +1,5 @@
+{
+  "name": "Cross-Site Scripting: Bypass Input Validation",
+  "desc": "Bypass input validation using database mutations for stored XSS",
+  "order": 9
+}

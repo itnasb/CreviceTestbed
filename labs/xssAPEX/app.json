@@ -1,0 +1,5 @@
+{
+  "name": "Cross-Site Scripting: Error Message",
+  "desc": "Demonstration of reflected XSS in a verbose error message caused by inconsistent HTML encoding, emulating Oracle APEX",
+  "order": 6
+}

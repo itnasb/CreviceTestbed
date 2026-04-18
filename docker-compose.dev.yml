@@ -1,0 +1,10 @@
+services:
+  crevice-db:
+    build:
+      context: .
+      dockerfile: docker/db/Dockerfile
+
+  crevice-web:
+    build:
+      context: .
+      dockerfile: Dockerfile

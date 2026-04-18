@@ -1,0 +1,708 @@
+/* demo-theme.css - Shared theme for PoC demo apps (FluxMode-style) */
+
+:root{
+  --bg-page:#2b2f33;
+
+  --panel-bg:#b8c0c8;
+  --panel-border:#2b3640;
+  --panel-shadow:0 4px 10px rgba(0,0,0,0.4);
+
+  --panel-inner-bg:#394651;
+
+  --text-main:#e0e0e0;
+  --text-dark:#1b2f45;
+  --text-accent:#215475;
+
+  --btn-bg:#5b7fa6;
+  --btn-bg-hover:#4a6b8f;
+
+  --input-border:#7a8a99;
+  --input-focus:#9cb8d6;
+
+  --pre-border:#9aa6b2;
+
+  /* Wide cap for large displays; page-wrap will still keep things sane */
+  --layout-maxw:1400px;
+
+  /* NEW: panel sizing knobs */
+  --panel-minw:290px;   /* when window is narrow, panels will wrap/stack */
+  --panel-basis:340px;  /* target starting width per panel when wrapping */
+}
+
+/* ===== Base page ===== */
+body{
+  font-family: Arial, sans-serif;
+  margin: 0;                 /* remove browser default margin */
+  padding: 0;                /* remove top gap */
+  background: var(--bg-page);
+  color: var(--text-main);
+}
+/* ===== Whole-page scaling container =====
+   Wrap your entire page content in: <div class="page-wrap"> ... </div>
+*/
+.page-wrap{
+  width: min(1400px, 96vw);
+  margin: 12px auto 0 auto;  /* small space above header */
+  padding: 0 20px 20px 20px; /* side + bottom only */
+  box-sizing: border-box;
+}
+
+/* ===== Layout ===== */
+.layout-row{
+  display:flex;
+  gap: clamp(12px, 1.8vw, 18px);
+  align-items: stretch;
+  flex-wrap: wrap;
+  max-width: var(--layout-maxw);
+}
+
+/* ===== Generic panel frame ===== */
+.panel{
+  flex: 1 1 var(--panel-basis);
+  min-width: var(--panel-minw);
+
+  border: 5px solid var(--panel-border);
+  border-radius: 8px;
+  background: var(--panel-bg);
+  padding: 16px;
+  box-shadow: var(--panel-shadow);
+  box-sizing: border-box;
+}
+/* ===== Layout ===== */
+.layout-row{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:stretch;
+  gap: clamp(12px, 1.8vw, 18px);
+}
+
+/* IMPORTANT: allow flex items to shrink below their content's min-width */
+.layout-row > .panel{
+  flex: 1 1 var(--panel-basis);
+  min-width: var(--panel-minw);
+  min-width: 0;              /* <-- THIS is the key flexbox fix */
+}
+
+/* Make long strings stop forcing panel width */
+pre, code{
+  overflow-x: auto;           /* scroll inside code blocks if needed */
+  max-width: 100%;
+}
+
+/* Prefer wrapping long payload strings instead of expanding the panel */
+pre{
+  white-space: pre-wrap;      /* you already had this; keep it */
+  overflow-wrap: anywhere;    /* <-- breaks long tokens like \\127.0.0.1\... */
+  word-break: break-word;     /* fallback */
+}
+/* Keep this as a styling helper; don't hard-code width */
+.textborder{
+  border: 5px solid var(--panel-border);
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+/* Use panel look for these containers too (no hard-coded widths) */
+.app-container{ width:auto; }
+.payloads-container{ width:auto; }
+.text-container{ width:auto; }
+
+/* Default: payload panel behaves like other panels */
+.payloads-container.panel{
+  flex: 1 1 320px;
+  min-width: 300px;
+}
+
+/* When payloads collapsed → shrink to content */
+.payloads-container.panel.collapsed{
+  flex: 0 0 auto;   /* do not grow */
+  width: auto;      /* size to content */
+  min-width: 260px; /* still readable */
+}
+
+/* If you want text-container to be transparent, uncomment next line */
+/* .text-container{ background: transparent; } */
+
+/* ===== Header row ===== */
+.header-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:12px;
+}
+
+.header-row h2{
+  margin:0;
+  color: var(--text-accent);
+  font-size:20px;
+}
+
+/* ===== Inner panel (inputs area) ===== */
+.input-panel{
+  background: var(--panel-inner-bg);
+  padding:14px;
+  border-radius:6px;
+  margin-bottom:16px;
+}
+
+.input-panel label{
+  color:#e8edf2;
+  font-size:13px;
+}
+
+/* ===== Form controls ===== */
+input, textarea{
+  width:100%;
+  padding:8px;
+  margin:6px 0 12px 0;
+  box-sizing:border-box;
+  border:1px solid var(--input-border);
+  border-radius:4px;
+  font-size:14px;
+  background: var(--panel-bg);
+  color: var(--text-dark);
+}
+
+textarea{ height:180px; resize:vertical; }
+
+input::placeholder, textarea::placeholder{
+  color:#55697c;
+}
+
+input:focus, textarea:focus{
+  outline:none;
+  border-color: var(--input-focus);
+  box-shadow:0 0 0 1px var(--input-focus);
+}
+
+/* ===== Buttons ===== */
+button{
+  padding:7px 18px;
+  font-size:14px;
+  background: var(--btn-bg);
+  color:#fff;
+  border:none;
+  border-radius:4px;
+  cursor:pointer;
+}
+
+button:hover{ background: var(--btn-bg-hover); }
+
+/* ===== Code blocks ===== */
+h3{
+  margin:0 0 6px 0;
+  color: var(--text-accent);
+  font-size:15px;
+}
+
+pre{
+  background: var(--panel-bg);
+  padding:12px;
+  white-space:pre-wrap;
+  margin-top:8px;
+  width:100%;
+  box-sizing:border-box;
+  border-radius:4px;
+  border:1px solid var(--pre-border);
+  font-size:13px;
+  color: var(--text-accent);
+}
+
+/* ===== Payload section ===== */
+.payload-block{ margin-bottom:12px; }
+
+/* Collapsible body: hidden by default (your JS must toggle it) */
+.payload-body{
+  display:none;
+  padding:14px;
+  background: var(--panel-inner-bg);
+  border-radius:6px;
+}
+
+.payload-body .note{
+  margin:0 0 10px 0;
+  color:#e8edf2;
+  font-size:13px;
+}
+
+.payload-body pre{
+  background: var(--panel-bg);
+  padding:12px;
+  white-space:pre-wrap;
+  margin:8px 0 0 0;
+  width:100%;
+  box-sizing:border-box;
+  border-radius:4px;
+  border:1px solid var(--pre-border);
+  font-size:13px;
+  color: var(--text-accent);
+}
+
+/* Optional: prevent 3 columns from getting too wide on huge screens */
+@media (min-width: 1200px){
+  .panel{
+    flex-basis: 360px;
+  }
+}
+
+/* Optional: force 1 column on very narrow screens */
+@media (max-width: 720px){
+  .panel{
+    min-width: 100%;
+    flex-basis: 100%;
+  }
+}
+
+/* ===== Critical flex shrink fixes ===== */
+.layout-row > *{
+  min-width: 0;                 /* allow flex items to shrink below content */
+}
+
+/* Make sure nothing inside a panel can force the panel wider than its column */
+.panel, .panel *{
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* ===== Button rows: allow wrapping instead of forcing width ===== */
+/* Use this class on the container that holds your "run query" buttons */
+.btn-row{
+  display: flex;
+  flex-wrap: wrap;              /* KEY: wrap buttons to next line */
+  gap: 8px;
+  align-items: center;
+  min-width: 0;
+}
+
+/* Buttons can shrink a bit and won't force a single-line overflow */
+.btn-row button,
+.btn-row a,
+.btn-row input[type="submit"]{
+  flex: 0 1 auto;
+  max-width: 100%;
+}
+
+/* If you have a toolbar that was nowrap somewhere, this neutralizes it */
+.toolbar,
+.actions,
+.controls{
+  flex-wrap: wrap;
+  min-width: 0;
+}
+
+/* ===== Long text / paths / filenames ===== */
+pre, code{
+  overflow-x: auto;             /* scroll inside the block if needed */
+  max-width: 100%;
+}
+
+pre{
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;      /* breaks long UNC paths / tokens */
+  word-break: break-word;       /* fallback */
+}
+
+/* ===== Tables (common in "reports") ===== */
+table{
+  width: 100%;
+  max-width: 100%;
+  display: block;               /* prevents table from forcing layout width */
+  overflow-x: auto;             /* scroll table inside panel */
+}
+/* Terminal output should never force panel width */
+.terminal-box{
+  white-space: pre-wrap;       /* allow wrapping */
+  overflow-wrap: anywhere;     /* break long tokens (UNC paths, hashes, etc.) */
+  word-break: break-word;      /* fallback */
+  max-width: 100%;
+  overflow-x: auto;            /* scroll if still needed */
+ background:#1e1e1e;
+  color:#00ff00;
+  padding:15px;
+  min-height:80px;
+  border-left:5px solid #007bff;
+
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  max-width:100%;
+  overflow-x:auto;
+}
+
+.layout-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:20px;
+  align-items:stretch;
+}
+
+/* Allow flex items to shrink even with long content */
+.layout-row > *{
+  min-width: 0;
+}
+
+/* Default panel sizing */
+.layout-row > .panel{
+  flex: 1 1 340px;
+  min-width: 320px;
+  max-width: 320px;
+}
+
+/* Make the main app panel wider than the others */
+.layout-row > .app-container.panel{
+  flex: 1 1 360px;
+  min-width: 360px;
+   max-width: 640px;
+}
+
+/* Payloads narrower */
+.layout-row > .payloads-container.panel{
+  flex: 1 1 340px;
+  min-width: 340px;
+   max-width: 640px;
+}
+
+/* Text panel moderate */
+.layout-row > .text-container{
+  flex: 1 1 320px;
+  min-width: 320px;
+   max-width: 640px;
+}
+
+/* prevent long output from forcing panel width */
+pre, code{
+  max-width: 100%;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+.layout-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:20px;
+  max-width:1400px;
+  margin:0 auto;
+}
+
+/* code injection lab customize and apply filter css*/
+  .button-row{
+  display:flex;
+  gap:8px;
+  align-items:center;
+}
+
+.filter-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.45);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:1000;
+}
+
+.filter-modal{
+  width:320px;
+  border:5px solid var(--panel-border);
+  border-radius:8px;
+  background:var(--panel-bg);
+  padding:16px;
+  box-shadow:var(--panel-shadow);
+}
+/* ===== Utilities ===== */
+.whitetext{ color:#FEFEFE; }
+.small{ font-size:12px; }
+.muted{ color: rgba(0,0,0,0.65); }
+
+.results-launch-row {
+  margin-top: 14px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.results-launch-row button {
+  min-width: 140px;
+}
+
+.popover-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.62);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 9999;
+}
+
+.popover-backdrop.is-open {
+  display: flex;
+}
+
+.popover-panel {
+  width: min(1400px, 96vw);
+  max-height: 88vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.popover-panel.panel {
+  margin: 0;
+}
+
+.popover-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.popover-header-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.popover-body {
+  padding: 16px 18px 18px;
+  overflow: auto;
+}
+.popover-body .results-scroll {
+  max-height: 60vh;
+  overflow-y: auto;
+  overflow-x: auto;
+}
+
+.popover-meta {
+  margin-bottom: 12px;
+}
+
+.table-wrap {
+  overflow: auto;
+  max-width: 100%;
+}
+
+.results-table {
+  width: 100%;
+  min-width: 900px;
+  border-collapse: collapse;
+  margin-top: 6px;
+}
+
+.results-table th,
+.results-table td {
+  text-align: left;
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.14);
+  vertical-align: top;
+}
+
+.results-table th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: rgba(20,20,24,0.96);
+  backdrop-filter: blur(2px);
+  font-weight: 700;
+}
+
+.results-empty {
+  padding: 10px 0;
+}
+
+.popover-close-x {
+  font-size: 20px;
+  line-height: 1;
+  padding: 6px 10px;
+}
+
+.hint-card[hidden] {
+  display: none;
+}
+
+.hint-card.is-visible {
+  display: block;
+}
+@media (max-width: 900px) {
+  .popover-backdrop {
+    padding: 10px;
+  }
+
+  .popover-panel {
+    width: 98vw;
+    max-height: 94vh;
+  }
+
+  .results-table {
+    min-width: 720px;
+  }
+}
+.popover-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.62);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 9999;
+}
+
+.popover-backdrop.is-open {
+  display: flex;
+
+}
+
+.results-scroll {
+  max-height: 60vh;   /* keeps it usable on all screens */
+  overflow-y: auto;
+  overflow-x: auto;
+  padding-right: 6px; /* prevents scrollbar overlap */
+}
+
+/* optional: nicer scrollbar (webkit only) */
+.results-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+.results-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.2);
+  border-radius: 4px;
+}
+
+
+    .form-grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    .form-grid label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    .form-grid input[type="text"],
+    .form-grid input[type="date"],
+    .form-grid input[type="number"],
+    .form-grid textarea {
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .form-grid textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+
+    .insert-preview-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 14px;
+    }
+
+    .insert-preview-table th,
+    .insert-preview-table td {
+      text-align: left;
+      vertical-align: top;
+      padding: 10px 12px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .insert-preview-table th {
+      width: 180px;
+    }
+    .message-panel {
+      margin-top: 16px;
+      padding: 14px 16px;
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 8px;
+    }
+
+    .message-panel ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+.popover-header h2.whitetext {
+  color: #FEFEFE !important;
+}
+    .env-chip {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .03em;
+      text-transform: uppercase;
+      background: #008000;
+      color: #f4f7fb;
+      margin-top: 8px;
+    }
+
+ .debug-footer {
+  margin-top: 2rem;
+  border: 1px solid #844;
+  border-radius: 12px;
+  background: #23191b;
+  color: #f5dede;
+  padding: 1rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,.25);
+}
+
+.debug-footer h3,
+.debug-footer h4 {
+  margin-top: 0;
+  color: #ffe7e7;
+}
+
+.debug-footer code,
+.debug-footer .raw-uri {
+  word-break: break-all;
+  white-space: pre-wrap;
+  background: rgba(255,255,255,.05);
+  padding: .15rem .35rem;
+  border-radius: 6px;
+}
+
+.debug-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.debug-table-wrap {
+  overflow-x: auto;
+}
+
+.debug-footer table.debug-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: .5rem;
+}
+
+.debug-footer table.debug-table th,
+.debug-footer table.debug-table td {
+  border: 1px solid rgba(255,255,255,.12);
+  padding: .65rem .75rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.debug-footer table.debug-table th {
+  background: rgba(255,255,255,.07);
+  color: #fff;
+}
+.results-message {
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  margin: 0;
+  padding: 1rem;
+  border: 1px solid #444;
+  border-radius: 8px;
+  background: #111;
+  color: #f5f5f5;
+  font-family: Consolas, Monaco, monospace;
+}

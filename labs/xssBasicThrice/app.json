@@ -1,0 +1,5 @@
+{
+  "name": "Cross-Site Scripting: Basics Thrice",
+  "desc": "Reflected XSS into a JavaScript comment within a script element",
+  "order": 3
+}

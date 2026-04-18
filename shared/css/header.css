@@ -1,0 +1,117 @@
+/* Crevice Testbed - production header styles
+   Designed for a max-width of 1080px with an optional 2x (retina) asset.
+*/
+
+:root{
+  --ctb-maxw: 1920px;
+
+  /* NEW: Header height is the “master” size knob */
+  --ctb-header-h: clamp(76px, 9vw, 82px);
+
+  /* Shield scales with header height, but never exceeds it */
+  --shield-size: clamp(64px, 8vw, 74px);
+
+  /* text scales derived from shield */
+  --title-size: calc(var(--shield-size) * 0.34);
+  --tag-size:   calc(var(--shield-size) * 0.24);
+  
+  --ctb-h: 130px;
+  --ctb-padx: 40px;
+  --ctb-gap: 28px;
+
+  /* Typography proportions (idealized) */
+  --ctb-title-size: 44px;
+  --ctb-title-line: 44px;
+  --ctb-tag-size: 71px;
+
+  /* Theme colors */
+  --ctb-bg1: #18233A;
+  --ctb-bg2: #101A2B;
+  --ctb-white: #EBEEF2;
+  --ctb-orange: #F38C29;
+  --ctb-tag: #A0B2C6;
+
+  /* text scales derived from shield */
+  --title-size: calc(var(--shield-size) * 0.34);
+  --tag-size:   calc(var(--shield-size) * 0.24);
+  
+}
+
+
+.ctb-header{
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+
+  height: var(--ctb-header-h);
+  max-height: 100px;
+  overflow: hidden;
+
+  background: linear-gradient(135deg,#18233A,#101A2B);
+  display: flex;
+  align-items: center;
+
+  padding: 14px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  box-shadow: var(--panel-shadow);
+}
+.ctb-inner{display:flex;align-items:center;gap:18px;padding:0 0px;width:100%;}
+.ctb-shield{
+  height: var(--shield-size);
+  width: auto;
+  max-height: 100%;
+}
+.ctb-hub-header{  width:97%;
+  max-width:980px;height: calc(var(--shield-size) * 0.77);max-height:100px;overflow:hidden;background:linear-gradient(135deg,#18233A,#101A2B);display:flex;align-items:center;padding:14px;border-radius:6px; margin-bottom:16px; box-shadow: var(--panel-shadow);}
+.ctb-title{display:grid;grid-template-rows:var(--title-size) var(--title-size);}
+.ctb-title div{font-family:Inter,Arial;font-weight:800;  font-size: var(--title-size);
+  line-height: var(--title-size);
+  line-height: var(--title-size);}
+.ctb-title .crevice{color:#EBEEF2;}
+.ctb-title .testbed{color:#F38C29;}
+.ctb-tag{font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;  font-weight: 500; font-size: var(--tag-size); color: var(--ctb-tag);
+  opacity: 0.95;white-space:nowrap; overflow:hidden;}
+
+
+.ctb-home{
+  display:block;
+  width:100%;
+  color:inherit;
+  text-decoration:none;
+}
+
+.ctb-home:hover{
+  cursor:pointer;
+  filter:brightness(1.05);
+}
+
+.ctb-text{
+  display:flex;
+  align-items:center;
+  gap:28px;          /* <-- locked spacing */
+  width:auto;        /* don’t stretch */
+  min-width:0; overflow:hidden;
+}
+.headerpanel{
+  width: 100%;
+  max-width: 1380px;
+  box-sizing: border-box;
+
+  border: 5px solid var(--panel-border);
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: var(--panel-shadow);
+}
+
+
+
+/* Responsive downscale */
+@media (max-width: 900px){
+  /* Let the variables do the scaling; don't hard-force pixel heights */
+  .ctb-text{ gap: clamp(12px, 3vw, 20px); }
+  .ctb-tag{
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+}

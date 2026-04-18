@@ -1,0 +1,11 @@
+Phishing Sentiment Report
+Report ID,1002
+Report Name,Most Encouraging
+Primary Subject,Bob Miller
+Records,2
+Date Range,2023-03-10 to 2023-04-05
+Average Score,1.0
+
+Employee Name,Comment,Sentiment Score,Sentiment Label,Date
+Bob Miller,"Keep up the hard work, these tests are getting much harder to spot!",1,Encouraging,2023-03-10
+Bob Miller,I appreciate the vigilance of the IT team.,1,Encouraging,2023-04-05

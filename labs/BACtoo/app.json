@@ -1,0 +1,5 @@
+{
+  "name": "Broken Access Control Too",
+  "desc": "BAC via Client-Side Authorization Checks and Missing Server-Side Enforcement",
+  "order": 93
+}

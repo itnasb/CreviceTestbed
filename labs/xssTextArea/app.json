@@ -1,0 +1,5 @@
+{
+  "name": "Cross-Site Scripting: TextArea",
+  "desc": "Demonstration of XSS where user input is passed into a textarea HTML element unsafely",
+  "order": 6
+}

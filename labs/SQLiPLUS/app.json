@@ -1,0 +1,5 @@
+{
+  "name": "SQLI +",
+  "desc": "Error message based SQL injection PLUS DOM based XSS",
+  "order": 94
+}

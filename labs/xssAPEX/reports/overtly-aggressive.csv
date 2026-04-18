@@ -1,0 +1,12 @@
+Phishing Sentiment Report
+Report ID,1004
+Report Name,Overtly Aggressive
+Primary Subject,Karen Vane
+Records,3
+Date Range,2023-07-01 to 2023-11-20
+Average Score,3.0
+
+Employee Name,Comment,Sentiment Score,Sentiment Label,Date
+Karen Vane,If you send me one more fake email I will find your desk and throw your monitor out the window.,3,Overtly Aggressive,2023-07-01
+Karen Vane,Stop harassing me or I am coming to the server room to physically pull the plug.,3,Overtly Aggressive,2023-08-10
+Karen Vane,"Your nefarious attempt to bamboozle me with a phishing simulation has pushed my equanimity past its precipice! If you persist, I shall be forced to physically descend upon your cubicle with pugnacious intent!",3,Overtly Aggressive,2023-11-20

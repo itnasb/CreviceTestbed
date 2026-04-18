@@ -1,0 +1,42 @@
+services:
+  crevice-db:
+    image: ghcr.io/itnasb/crevice-testbed-db:latest
+    container_name: crevice-db
+    networks:
+      crevice-net:
+        aliases:
+          - db
+    environment:
+      MARIADB_ROOT_PASSWORD: "TrainingPass123!"
+      MARIADB_DATABASE: "crevice_db"
+    volumes:
+      - crevice-db-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-pTrainingPass123!"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 20s
+
+  crevice-web:
+    image: ghcr.io/itnasb/crevice-testbed-web:latest
+    container_name: crevice-web
+    ports:
+      - "0.0.0.0:8080:80"
+    networks:
+      - crevice-net
+    depends_on:
+      crevice-db:
+        condition: service_healthy
+    environment:
+      DB_HOST: "db"
+      DB_USER: "sa_user"
+      DB_PASS: "sa_password"
+      DB_NAME: "crevice_db"
+
+networks:
+  crevice-net:
+    driver: bridge
+
+volumes:
+  crevice-db-data:

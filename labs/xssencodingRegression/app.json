@@ -1,0 +1,5 @@
+{
+  "name": "Cross-Site Scripting: Filename Encoding Regression",
+  "desc": "This app has a bug that decodes HTML-entity encoding when renaming a file",
+  "order": 60
+}

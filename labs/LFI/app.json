@@ -1,0 +1,5 @@
+{
+  "name": "Local File Inclusion",
+  "desc": "Directory traversal without file content disclosure, but allowing for RCE via SQL injection and UNC Path Inclusion",
+  "order": 92
+}

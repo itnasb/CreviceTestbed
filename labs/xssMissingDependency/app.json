@@ -1,0 +1,5 @@
+{
+  "name": "Cross-Site Scripting: jQuery Selector",
+  "desc": "The app has a dependency that isn't loaded which causes a syntax error preventing script execution",
+  "order": 5
+}

@@ -1,0 +1,5 @@
+{
+  "name": "Cross-Site Scripting: Server Misconfiguration",
+  "desc": "Environment changing leads to XSS via a random URL parameter, emulating CFWheels",
+  "order": 10
+}

@@ -1,0 +1,5 @@
+{
+  "name": "Broken Access Control",
+ "desc": "Authorization bypass via fail-open validation of a user-controlled URL parameter",
+  "order": 89
+}

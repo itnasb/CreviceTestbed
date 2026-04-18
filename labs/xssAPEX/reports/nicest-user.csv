@@ -1,0 +1,11 @@
+Phishing Sentiment Report
+Report ID,1001
+Report Name,Nicest User
+Primary Subject,Alice Jenkins
+Records,2
+Date Range,2023-01-15 to 2023-02-12
+Average Score,0.0
+
+Employee Name,Comment,Sentiment Score,Sentiment Label,Date
+Alice Jenkins,Thank you for keeping us safe! I almost clicked but checked the URL first.,0,Supportive,2023-01-15
+Alice Jenkins,Great job on the training modules this month!,0,Supportive,2023-02-12

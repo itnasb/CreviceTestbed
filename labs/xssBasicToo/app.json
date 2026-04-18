@@ -1,0 +1,5 @@
+{
+  "name": "Cross-Site Scripting: Basics Too",
+  "desc": "Reflected XSS into a script element where the user doesn't control everything returned in the script",
+  "order": 2
+}

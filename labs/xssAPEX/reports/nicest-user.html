@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Nicest User - Phishing Sentiment Report</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 2rem;
+      color: #1f2937;
+      background: #ffffff;
+    }
+    .report { max-width: 1020px; margin: 0 auto; }
+    h1 { margin-bottom: 0.25rem; font-size: 28px; }
+    .subtitle { color: #4b5563; margin-bottom: 1rem; }
+    .meta {
+      margin-bottom: 1.25rem;
+      padding: 0.9rem 1rem;
+      border: 1px solid #d1d5db;
+      border-radius: 10px;
+      background: #f9fafb;
+      line-height: 1.55;
+    }
+    .summary {
+      margin: 1rem 0 1.25rem;
+      padding: 0.9rem 1rem;
+      border-left: 4px solid #7c93b3;
+      background: #f5f7fb;
+      color: #374151;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+    th, td {
+      border: 1px solid #d1d5db;
+      padding: 10px 12px;
+      text-align: left;
+      vertical-align: top;
+      word-wrap: break-word;
+    }
+    th { background: #eef2f7; }
+    .center { text-align: center; width: 90px; }
+    .footnote { margin-top: 1rem; color: #4b5563; font-size: 0.95rem; }
+  </style>
+</head>
+<body>
+  <div class="report">
+    <h1>Nicest User</h1>
+    <div class="subtitle">Phishing sentiment export</div>
+
+    <div class="meta">
+      <div><strong>Report ID:</strong> 1001</div><div><strong>Report Name:</strong> Nicest User</div><div><strong>Primary Subject:</strong> Alice Jenkins</div><div><strong>Records:</strong> 2</div><div><strong>Date Range:</strong> 2023-01-15 to 2023-02-12</div><div><strong>Average Score:</strong> 0.0</div>
+      <div><strong>Output Type:</strong> HTML</div>
+    </div>
+
+    <div class="summary">
+      Alice Jenkins submitted the least aggressive comments in the dataset and consistently responded with supportive or appreciative feedback.
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 18%;">Employee Name</th>
+          <th style="width: 47%;">Comment</th>
+          <th style="width: 9%;">Score</th>
+          <th style="width: 16%;">Sentiment Label</th>
+          <th style="width: 10%;">Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Alice Jenkins</td><td>Thank you for keeping us safe! I almost clicked but checked the URL first.</td><td class='center'>0</td><td>Supportive</td><td>2023-01-15</td></tr><tr><td>Alice Jenkins</td><td>Great job on the training modules this month!</td><td class='center'>0</td><td>Supportive</td><td>2023-02-12</td></tr>
+      </tbody>
+    </table>
+
+    <div class="footnote">
+      Score scale: 0 = Supportive, 1 = Encouraging, 2 = Passive Aggressive, 3 = Overtly Aggressive.
+    </div>
+  </div>
+</body>
+</html>

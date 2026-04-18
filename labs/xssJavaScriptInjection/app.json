@@ -1,0 +1,5 @@
+{
+  "name": "Cross-Site Scripting: JS Injection",
+  "desc": "Reflected XSS via DOM-Based Javascript Injection where the user controls an input filter URL parameter",
+  "order": 4
+}

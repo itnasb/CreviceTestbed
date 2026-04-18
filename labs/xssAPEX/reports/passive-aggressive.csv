@@ -1,0 +1,12 @@
+Phishing Sentiment Report
+Report ID,1003
+Report Name,Passive Aggressive
+Primary Subject,Chadwick Thorton
+Records,3
+Date Range,2023-05-20 to 2023-09-12
+Average Score,2.0
+
+Employee Name,Comment,Sentiment Score,Sentiment Label,Date
+Chadwick Thorton,"Per my previous email, I do not have time for these little games.",2,Passive Aggressive,2023-05-20
+Chadwick Thorton,I assume this is more important than my actual billable hours?,2,Passive Aggressive,2023-06-15
+Chadwick Thorton,This correspondence—which was quite the perfidious little surprise—insinuated that I had clandestinely pilfered data. The entire charade was both capricious and incendiary and you should be reprimanded!,2,Passive Aggressive,2023-09-12

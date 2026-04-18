@@ -1,0 +1,5 @@
+{
+  "name": "Unsafe Upload: Stored XSS and RCE",
+  "desc": "A whitelist of filetypes acceptable for upload is not in use, allowing for XSS or RCE",
+  "order": 90
+}
