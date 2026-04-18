@@ -1,128 +1,155 @@
-# FluxMode Labs
+# Crevice Testbed
 
-Intentionally vulnerable PHP web application labs for hands-on security testing, and secure code review practice.
+Intentionally vulnerable PHP web application labs for hands-on security testing, exploit development practice, and secure code review training.
 
-⚠️ WARNING:
-These applications are intentionally vulnerable.
-Run locally only. Do not expose to the public internet.
+Crevice Testbed is tested on and installation is recommended on an Ubuntu Server virtual machine.
+
+⚠️ **WARNING:**  
+This application is intentionally vulnerable and plaintext hardcoded secrets are in use.  
+Run on a local virtual machine only. Do not expose to the public internet.
+
+If installed on your local machine rather than a VM, a port will be opened to your local network. This means don't run the app while on the local Coffee shop wifi or your public Uni wifi.
 
 ---
 
 ## Overview
 
-FluxMode Labs is a collection of small, focused web application demos designed to emulate real-world vulnerability patterns in controlled scenarios.
+Crevice Testbed is a collection of small, focused web application demos designed to emulate real-world vulnerability patterns in controlled scenarios.
 
-Each lab demonstrates a specific class of vulnerability, such as:
+Each lab demonstrates at least one class of vulnerability, such as:
 
-- DOM-based injection
-- File upload abuse
-- Command execution issues
 - Input validation flaws
 - Output encoding mistakes
+- DOM-based injection
+- File upload abuse
 - Unsafe deserialization
+- Broken Access Control
+- Remote Code Execution issues
 - And more
 
-The platform is distributed as a Docker container so users do not need to install:
+When installed via Docker, users do not need to install runtime dependencies directly on the host.
 
-- PHP
-- Apache
-- Composer
-- Extensions
-- Any runtime dependencies
+---
 
-All dependencies (including mbstring) are built into the container.
+## Requirements
+
+- Docker Engine
+- Docker Compose plugin
+
+You can verify your installation with:
+
+```bash
+docker version
+docker compose version
+```
 
 ---
 
 ## Quick Start (Recommended)
 
-### 1) Install Docker
-
-Install Docker Desktop or Docker Engine:
-https://www.docker.com/products/docker-desktop/
-
-### 2) Pull the Latest Image
+### 1) Clone the Repository
 
 ```bash
-docker pull YOUR_DOCKERHUB_USERNAME/fluxmode-labs:latest
+git clone https://github.com/itnasb/CreviceTestbed.git
+cd CreviceTestbed
 ```
 
-### 3) Run the Container
+### 2) Pull the Latest Published Images
 
 ```bash
-docker run --name fluxmode-labs -p 8080:80 YOUR_DOCKERHUB_USERNAME/fluxmode-labs:latest
+docker compose pull
 ```
 
-### 4) Open in Browser
-
-http://localhost:8080
-
-
----
-
-## Using Docker Compose (Alternative)
+### 3) Start the Application
 
 ```bash
 docker compose up -d
 ```
-Then visit:
 
+### 4) Open in Browser
+
+```text
 http://localhost:8080
+```
+
+If you are running Crevice Testbed on a remote Ubuntu VM or server, replace `localhost` with that system's IP address or hostname.
 
 ---
 
 ## Updating to the Latest Version
 
+From the project directory:
+
 ```bash
-docker pull YOUR_DOCKERHUB_USERNAME/fluxmode-labs:latest
-docker rm -f fluxmode-labs
-docker run --name fluxmode-labs -p 8080:80 YOUR_DOCKERHUB_USERNAME/fluxmode-labs:latest
+docker compose pull
+docker compose up -d
 ```
 
-For deterministic environments, you may pull a specific version:
+If you want a completely fresh database state while updating:
 
 ```bash
-docker pull YOUR_DOCKERHUB_USERNAME/fluxmode-labs:v1.2.0
+docker compose down -v --remove-orphans
+docker compose pull
+docker compose up -d
 ```
 
 ---
 
 ## Lab Resets
 
-
-If needed, restart container for a clean state:
+If needed, restart with a clean database state:
 
 ```bash
-docker rm -f fluxmode-labs
-docker run --name fluxmode-labs -p 8080:80 YOUR_DOCKERHUB_USERNAME/fluxmode-labs:latest
+docker compose down -v --remove-orphans
+docker compose up -d
 ```
 
 ---
 
 ## Running From Source (Development Mode)
 
-If you want to build locally instead of pulling a prebuilt image:
+If you want to build locally instead of pulling the published images:
 
 ```bash
-git clone https://github.com/YOUR_GITHUB_USERNAME/fluxmode-labs.git
-cd fluxmode-labs
-docker compose up --build
-
-or 
-
-Local dev:
-  php -S 127.0.0.1:8000 router.php
+git clone https://github.com/itnasb/CreviceTestbed.git
+cd CreviceTestbed
+docker compose -f docker-compose.yml -f docker-compose.dev.yml up --build
 ```
+
+Local dev without Docker:
+
+```bash
+php -S 127.0.0.1:8000 router.php
+```
+
+---
+
+## Published Images
+
+Crevice Testbed publishes separate web and database images through GitHub Container Registry:
+
+- `ghcr.io/itnasb/crevice-testbed-web:latest`
+- `ghcr.io/itnasb/crevice-testbed-db:latest`
+
+Advanced users can pull them directly:
+
+```bash
+docker pull ghcr.io/itnasb/crevice-testbed-web:latest
+docker pull ghcr.io/itnasb/crevice-testbed-db:latest
+```
+
+For normal use, Docker Compose is the recommended path.
 
 ---
 
 ## Versioning Strategy
 
-Images are published with:
+Published images may use tags such as:
 
-- latest -> most recent build from main branch
-- sha-<commit> -> exact commit build
-- vX.Y.Z -> tagged releases
+- `latest` -> most recent build from the default branch
+- commit-derived tags -> exact build provenance
+
+If release tags are added later, version tags such as `vX.Y.Z` can also be published.
 
 This allows:
 
@@ -153,11 +180,11 @@ Do not deploy to:
 
 ## License
 
-Specify your license here (MIT recommended for training content).
+MIT License
 
 ---
 
 ## Maintainer
 
-Maintained by: YOUR_NAME
-GitHub: https://github.com/YOUR_GITHUB_USERNAME
+Maintained by: Bernard  
+GitHub: https://github.com/itnasb
