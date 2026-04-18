@@ -16,7 +16,7 @@ jobs:
       matrix:
         include:
           - image_name: crevice-testbed-web
-            dockerfile: docker/Dockerfile
+            dockerfile: /Dockerfile
           - image_name: crevice-testbed-db
             dockerfile: docker/db/Dockerfile
 
