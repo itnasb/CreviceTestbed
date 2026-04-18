@@ -30,13 +30,19 @@ Each lab demonstrates at least one class of vulnerability, such as:
 When installed via Docker, users do not need to install runtime dependencies directly on the host.
 
 ---
-
 ## Requirements
+
+Crevice Testbed requires:
 
 - Docker Engine
 - Docker Compose plugin
 
-You can verify your installation with:
+Install Docker using Docker's official documentation:
+
+- [Install Docker Engine on Ubuntu](https://docs.docker.com/engine/install/ubuntu/)
+- [Install Docker Compose plugin on Linux](https://docs.docker.com/compose/install/linux/)
+
+After installation, verify everything is working:
 
 ```bash
 docker version
