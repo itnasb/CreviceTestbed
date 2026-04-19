@@ -8,7 +8,8 @@ Crevice Testbed is tested on and installation is recommended on an Ubuntu Server
 This application is intentionally vulnerable and plaintext hardcoded secrets are in use.  
 Run on a local virtual machine only. Do not expose to the public internet.
 
-If installed on your local machine rather than a VM, a port will be opened to your local network. This means don't run the app while on the local Coffee shop wifi or your public Uni wifi.
+If installed on your host machine rather than a VM, a port will be opened to your local network. 
+This means don't run the app while on the local Coffee shop, university, or any other public wifi.
 
 ---
 
@@ -30,6 +31,8 @@ Each lab demonstrates at least one class of vulnerability, such as:
 When installed via Docker, users do not need to install runtime dependencies directly on the host.
 
 ---
+
+
 ## Requirements
 
 Crevice Testbed requires:
@@ -48,7 +51,6 @@ After installation, verify everything is working:
 docker version
 docker compose version
 ```
-
 ---
 
 ## Quick Start (Recommended)
@@ -112,7 +114,7 @@ docker compose up -d
 
 ---
 
-## Running From Source (Development Mode)
+## Running From Source
 
 If you want to build locally instead of pulling the published images:
 
@@ -120,12 +122,6 @@ If you want to build locally instead of pulling the published images:
 git clone https://github.com/itnasb/CreviceTestbed.git
 cd CreviceTestbed
 docker compose -f docker-compose.yml -f docker-compose.dev.yml up --build
-```
-
-Local dev without Docker:
-
-```bash
-php -S 127.0.0.1:8000 router.php
 ```
 
 ---
@@ -137,31 +133,13 @@ Crevice Testbed publishes separate web and database images through GitHub Contai
 - `ghcr.io/itnasb/crevice-testbed-web:latest`
 - `ghcr.io/itnasb/crevice-testbed-db:latest`
 
-Advanced users can pull them directly:
+Users can pull them directly:
 
 ```bash
 docker pull ghcr.io/itnasb/crevice-testbed-web:latest
 docker pull ghcr.io/itnasb/crevice-testbed-db:latest
 ```
 
-For normal use, Docker Compose is the recommended path.
-
----
-
-## Versioning Strategy
-
-Published images may use tags such as:
-
-- `latest` -> most recent build from the default branch
-- commit-derived tags -> exact build provenance
-
-If release tags are added later, version tags such as `vX.Y.Z` can also be published.
-
-This allows:
-
-- Reproducible training environments
-- Stable classroom distributions
-- Controlled lab progression
 
 ---
 
